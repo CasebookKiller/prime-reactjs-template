@@ -6,7 +6,8 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [TON Connect](https://docs.ton.org/develop/dapps/ton-connect/overview)
 - [@telegram-apps SDK](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk)
-- [Telegram UI](https://github.com/Telegram-Mini-Apps/TelegramUI)
+- [PrimeFlex](https://primeflex.org/)
+- [PrimeReact](https://primereact.org/)
 - [Supabase](https://supabase.com/)
 - [Vite](https://vitejs.dev/)
 
@@ -300,6 +301,16 @@ https://telegram-mini-apps.github.io/is-awesome
 В этом шаблоне используется проект [TO Connect](https://docs.ton.org/develop/apps/to-connect/overview), чтобы продемонстрировать, как разработчики могут интегрировать функциональность, связанную с криптовалютой TON.
 
 Манифест ДЛЯ подключения, используемый в этом шаблоне, хранится в папке `public`, где находятся все общедоступные статические файлы. Не забудьте [configure](https://docs.ton.org/develop/apps/to-connect/manifest) этот файл в соответствии с информацией о вашем проекте.
+
+```json
+{
+  "url": "<url-приложения>",  // требуется
+  "name": "<имя-приложения>",  // требуется
+  "iconUrl": "<url-иконки-приложения>",  // требуется
+  "termsOfUseUrl": "<url-документа-условий-использования>",  // опционально
+  "privacyPolicyUrl": "<url-документа-политики-конфиденциальности>",  // опционально
+}
+```
 
 ## Полезные ссылки
 

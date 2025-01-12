@@ -3,13 +3,12 @@ import {
   popup,
   mainButton,
   backButton,
-  useLaunchParams,
+//  useLaunchParams,
   miniApp,
   themeParams,
   viewport,
   init,
 } from '@telegram-apps/sdk-react';
-import { AppRoot } from '@telegram-apps/telegram-ui';
 import { type FC,
   startTransition,
   useEffect,
@@ -115,7 +114,7 @@ function MainButtonManipulator() {
 
 export const App: FC = () => {
   init();
-  const lp = useLaunchParams();
+  //const lp = useLaunchParams();
   
   miniApp.mount();
   
@@ -131,11 +130,8 @@ export const App: FC = () => {
   });
 
   return (
-    <AppRoot
-      appearance={miniApp.isDark() ? 'dark' : 'light'}
-      platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
-    >
-      <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <>
+      <HashRouter>
         <BackButtonManipulator/>
         <MainButtonManipulator/>
         <Routes>
@@ -143,6 +139,6 @@ export const App: FC = () => {
           <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
       </HashRouter>
-    </AppRoot>
+    </>
   );
 };

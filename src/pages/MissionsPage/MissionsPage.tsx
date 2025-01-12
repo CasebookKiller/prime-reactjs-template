@@ -1,10 +1,10 @@
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import './MissionsPage.css';
 import { openTelegramLink, shareURL, useLaunchParams } from '@telegram-apps/sdk-react';
-import { Cell, List} from '@telegram-apps/telegram-ui';
 import { Button } from 'antd-mobile';
 import { ChevronRight, Check2, Exclamation, Share, ArrowClockwise } from 'react-bootstrap-icons';
 import { botMethod } from '@/api/bot/methods';
+import { Panel } from 'primereact/panel';
 
 interface Mission {
   id: number;
@@ -86,7 +86,7 @@ export const MissionsPage: FC = () => {
   }, []);
   
   const cssDefault: CSSProperties = {
-    width: '60vw',
+    width: '100%',
     position: 'relative',
     background: 'transparent',
     borderColor: 'var(--tgui--link_color)',
@@ -94,7 +94,7 @@ export const MissionsPage: FC = () => {
   };
 
   const cssSuccess: CSSProperties = {
-    width: '60vw',
+    width: '100%',
     position: 'relative',
     background: 'transparent',
     borderColor: 'var(--tg-theme-hint-color)',
@@ -105,34 +105,43 @@ export const MissionsPage: FC = () => {
   const items = missions.map((mission) => {
     const { id, title, after, cb } = mission;
     return (
-        <Cell
-          style={{width: '100%'}}
+      <>
+        <div
           key={id}
+          className='flex flex-wrap align-items-center gap-4 app p-2'
         >
-          <Button
-            style={after === 'success' ? cssSuccess : cssDefault}
-            onClick={()=>{cb?.()}}
-          >
-          <div className="flex flex-1" style={{width: '100%'}}>
-            <div className="flex-left-80">{title}</div>
-            <div className='flex-right-20'>
-              {after === 'waiting' && <ChevronRight style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-accent-text-color)'}} strokeWidth="2" fill="var(--tg-theme-accent-text-color)"/>}
-              {after === 'checking' && <ArrowClockwise style={{marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem'}} strokeWidth="4" fill="var(--surface-ground)"/>}
-              {after === 'success' && <Check2 style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-hint-color)'}} strokeWidth="2" fill="var(--tg-theme-accent-text-color)"/>}
-              {after === 'error' && <Exclamation style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-destructive-text-color)'}} strokeWidth="1"/>}
-              {after === 'share' && <Share style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-accent-text-color)'}} strokeWidth="1"/>}
-            </div>
+          <div className='flex-1 flex flex-column gap-1 xl:mr-8'>
+            <Button
+              style={after === 'success' ? cssSuccess : cssDefault}
+              onClick={()=>{cb?.()}}
+            >
+              <div className="flex flex-1" style={{width: '100%'}}>
+                <div className="flex-left-80">{title}</div>
+                <div className='flex-right-20'>
+                  {after === 'waiting' && <ChevronRight style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-accent-text-color)'}} strokeWidth="2" fill="var(--tg-theme-accent-text-color)"/>}
+                  {after === 'checking' && <ArrowClockwise style={{marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem'}} strokeWidth="4" fill="var(--surface-ground)"/>}
+                  {after === 'success' && <Check2 style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-hint-color)'}} strokeWidth="2" fill="var(--tg-theme-accent-text-color)"/>}
+                  {after === 'error' && <Exclamation style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-destructive-text-color)'}} strokeWidth="1"/>}
+                  {after === 'share' && <Share style={{position: 'relative', marginLeft: '0.5rem', top: '0.2rem', width: '1rem', height: '1rem', stroke: 'var(--tg-theme-accent-text-color)'}} strokeWidth="1"/>}
+                </div>
+              </div>
+            </Button>
           </div>
-          </Button>
-        </Cell>
+        </div>
+      </>
     );
   });
 
   return (
     <div className="MissionsPage">
-      <List>
-        {items}
-      </List>
+      <Panel
+          className='shadow-5 mx-1 mt-1 mb-2'
+          header={'Задания'}
+      >
+        <div>
+          {items}
+        </div>
+      </Panel>
     </div>
   );
 };

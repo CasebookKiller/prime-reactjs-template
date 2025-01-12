@@ -1,9 +1,9 @@
 {
-  "name": "reactjs-template",
+  "name": "prime-reactjs-template",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.1",
   "type": "module",
-  "homepage": "https://casebookkiller.github.io/reactjs-template",
+  "homepage": "https://casebookkiller.github.io/prime-reactjs-template",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",
@@ -23,6 +23,8 @@
     "antd-mobile": "^5.38.1",
     "eruda": "^3.4.0",
     "generate-react-cli": "^8.4.9",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
     "primereact": "^10.8.4",
     "react": "^18.3.1",
     "react-bootstrap-icons": "^1.11.4",
